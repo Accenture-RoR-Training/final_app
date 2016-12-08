@@ -1,5 +1,4 @@
-<p id="notice"><%= notice %></p>
-
+<h3>Details of Post: <%= @post.title %></h3>
 <p>
   <strong>Title:</strong>
   <%= @post.title %>
@@ -10,5 +9,32 @@
   <%= @post.text_body %>
 </p>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<%= render "comments/show_comments", post: @post %>
+
+<%= form_for(@comment) do |f| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :text_body %>
+    <%= f.text_area :text_body %>
+    <%= f.hidden_field :post_id, value: @post.id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<br />
+<%= link_to 'Edit Post', edit_post_path(@post), class: "btn btn-success" %> |
+<%= link_to 'Back', posts_path, class: "btn btn-success" %>

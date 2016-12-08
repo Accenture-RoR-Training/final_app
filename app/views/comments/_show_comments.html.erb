@@ -1,0 +1,15 @@
+<h3>Comments for Post: <%= post.title %> </h3>
+
+<% if post.comments.present? %>
+	<% post.comments.each do |comment| %>
+		<p>
+		  <strong>Comment <%= comment.id %>:</strong>
+		  <%= comment.text_body %>
+		</p>
+	<% end %>
+
+<!-- 	<%#= link_to 'Edit', edit_comment_path(@comment) %> |
+	<%#= link_to 'Back', comments_path %> -->
+<% else %>
+	Comments not created yet.
+<% end %>
