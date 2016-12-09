@@ -3,7 +3,7 @@
 <% if post.comments.present? %>
 	<% post.comments.each do |comment| %>
 		<p>
-		  <strong>Comment <%= comment.id %>:</strong>
+		  <strong>Comment:</strong>
 		  <%= comment.text_body %>
 		</p>
 	<% end %>
